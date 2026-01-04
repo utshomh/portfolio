@@ -1,7 +1,14 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, -150]);
+  const y4 = useTransform(scrollY, [0, 1000], [0, 300]);
+  const yContent = useTransform(scrollY, [0, 1000], [0, -50]);
+
   const techStack = [
     "React",
     "Next.js",
@@ -37,22 +44,44 @@ const Hero = () => {
       className="relative min-h-[calc(100vh-80px)] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0"
     >
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.15),transparent)]" />
       <motion.div
+        style={{ y: y1 }}
+        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.15),transparent)]"
+      />
+      <motion.div
+        style={{ y: y2 }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
       />
       <motion.div
+        style={{ y: y3 }}
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
       />
 
+      {/* Parallax Floating Elements */}
+      <motion.div
+        style={{ y: y4 }}
+        className="absolute top-1/3 right-1/3 w-24 h-24 bg-primary/5 rounded-full blur-xl"
+      />
+      <motion.div
+        style={{ y: y2 }}
+        className="absolute bottom-1/3 left-1/3 w-32 h-32 bg-primary/8 rounded-full blur-2xl"
+      />
+      <motion.div
+        style={{ y: y1 }}
+        className="absolute top-2/3 right-1/4 w-20 h-20 bg-primary/6 rounded-full blur-lg"
+      />
+
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <motion.div
+        style={{ y: yContent }}
+        className="container mx-auto px-6 relative z-10"
+      >
         <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={containerVariants}
@@ -168,7 +197,7 @@ const Hero = () => {
             ))}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

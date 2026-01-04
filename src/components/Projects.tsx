@@ -2,6 +2,23 @@ import { ExternalLink, Github, Folder, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+interface ProjectDetails {
+  techStack: string[];
+  fullDescription: string;
+  challenges: string;
+  improvements: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  live: string;
+  image: string;
+  details: ProjectDetails;
+}
+
 const Projects = () => {
   const projects = [
     {
@@ -121,6 +138,106 @@ const Projects = () => {
     },
   };
 
+  const CardGlowEffect = () => (
+    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+  );
+
+  const ProjectImage = ({ project }: { project: Project }) => (
+    <div className="aspect-[3/2] bg-secondary/50 border-b border-border overflow-hidden">
+      <img
+        src={project.image}
+        alt={`${project.title} project screenshot`}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+  );
+
+  const ProjectContent = ({ project }: { project: Project }) => (
+    <div className="relative p-6 flex flex-col flex-grow">
+      {/* Header with Links */}
+      <div className="flex items-start justify-between mb-4">
+        <motion.div
+          whileHover={{ rotate: -10, scale: 1.1 }}
+          className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"
+        >
+          <Folder className="w-6 h-6 text-primary" />
+        </motion.div>
+        <div className="flex gap-3">
+          <motion.a
+            whileHover={{ scale: 1.15, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="View source code"
+          >
+            <Github className="w-5 h-5" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.15, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="View live project"
+          >
+            <ExternalLink className="w-5 h-5" />
+          </motion.a>
+        </div>
+      </div>
+
+      {/* Content */}
+      <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+        {project.title}
+      </h3>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-grow">
+        {project.description}
+      </p>
+
+      {/* Tech Stack */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.tech.map((tech) => (
+          <span
+            key={tech}
+            className="px-2.5 py-1 text-xs font-mono bg-secondary/50 text-muted-foreground rounded-md border border-border"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {/* Action Buttons - Always at bottom */}
+      <div className="space-y-2 mt-auto">
+        {/* View Details Button */}
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Link
+            to={`/project/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+            className="w-full px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium text-sm hover:bg-primary/20 transition-colors flex items-center justify-center gap-2"
+          >
+            <Eye className="w-4 h-4" />
+            View Details
+          </Link>
+        </motion.div>
+
+        {/* Visit GitHub Button */}
+        <motion.a
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full px-4 py-2 bg-secondary/50 text-foreground rounded-lg font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
+        >
+          <Github className="w-4 h-4" />
+          Visit GitHub
+        </motion.a>
+      </div>
+    </div>
+  );
+
   return (
     <section id="projects" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background Effects */}
@@ -159,115 +276,20 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 auto-rows-fr place-items-center max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12 auto-rows-fr place-items-center px-4"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.article
               key={project.title}
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-colors duration-300 flex flex-col h-full"
+              className={`group relative bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-colors duration-300 flex flex-col h-full ${
+                index === 3 ? "xl:col-span-3 xl:max-w-md xl:mx-auto" : ""
+              }`}
             >
-              {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Project Image */}
-              <div className="aspect-video bg-secondary/50 border-b border-border overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} project screenshot`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="relative p-6 flex flex-col flex-grow">
-                {/* Header with Links */}
-                <div className="flex items-start justify-between mb-4">
-                  <motion.div
-                    whileHover={{ rotate: -10, scale: 1.1 }}
-                    className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"
-                  >
-                    <Folder className="w-6 h-6 text-primary" />
-                  </motion.div>
-                  <div className="flex gap-3">
-                    <motion.a
-                      whileHover={{ scale: 1.15, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label="View source code"
-                    >
-                      <Github className="w-5 h-5" />
-                    </motion.a>
-                    <motion.a
-                      whileHover={{ scale: 1.15, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label="View live project"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </motion.a>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-grow">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-xs font-mono bg-secondary/50 text-muted-foreground rounded-md border border-border"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Buttons - Always at bottom */}
-                <div className="space-y-2 mt-auto">
-                  {/* View Details Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Link
-                      to={`/project/${project.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
-                      className="w-full px-4 py-2 bg-primary/10 text-primary rounded-lg font-medium text-sm hover:bg-primary/20 transition-colors flex items-center justify-center gap-2"
-                    >
-                      <Eye className="w-4 h-4" />
-                      View Details
-                    </Link>
-                  </motion.div>
-
-                  {/* Visit GitHub Button */}
-                  <motion.a
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-4 py-2 bg-secondary/50 text-foreground rounded-lg font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    Visit GitHub
-                  </motion.a>
-                </div>
-              </div>
+              <CardGlowEffect />
+              <ProjectImage project={project} />
+              <ProjectContent project={project} />
             </motion.article>
           ))}
         </motion.div>
