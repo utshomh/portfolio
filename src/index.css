@@ -218,3 +218,40 @@
     opacity: 1;
   }
 }
+
+/* Print styles for resume */
+@media print {
+  body {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .min-h-screen {
+    min-height: auto;
+  }
+
+  /* Hide print button when printing */
+  button {
+    display: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  .space-y-8 > * {
+    page-break-inside: avoid;
+  }
+
+  /* Make links visible in print */
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+
+  /* Ensure proper spacing */
+  .p-8 {
+    padding: 1rem;
+  }
+
+  .max-w-4xl {
+    max-width: none;
+  }
+}

@@ -24,7 +24,7 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Dhaka, Bangladesh",
+      value: "Tejgaon, Dhaka, Bangladesh",
       href: "#",
     },
   ];

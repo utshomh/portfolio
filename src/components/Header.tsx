@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -6,11 +7,31 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Update active section based on scroll position
+      const sections = ["home", "about", "skills", "projects", "contact"];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -31,6 +52,14 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -42,28 +71,32 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30 group-hover:bg-primary/30 transition-colors">
             <span className="text-primary font-bold text-lg">U</span>
           </div>
           <span className="font-semibold text-foreground text-lg tracking-tight">
             Utsho<span className="text-primary">.</span>MH
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link, index) => (
-            <motion.a
+            <motion.button
               key={link.name}
-              href={link.href}
+              onClick={() => scrollToSection(link.href)}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 * index, duration: 0.4 }}
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className={`text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full ${
+                activeSection === link.href.slice(1)
+                  ? "text-primary after:w-full"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
             >
               {link.name}
-            </motion.a>
+            </motion.button>
           ))}
         </nav>
 
@@ -103,14 +136,18 @@ const Header = () => {
           </motion.button>
 
           {/* CTA Button */}
-          <motion.a
+          <motion.button
+            onClick={() => scrollToSection("#contact")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#contact"
-            className="hidden md:inline-flex px-5 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
+            className={`hidden md:inline-flex px-5 py-2.5 rounded-lg font-medium text-sm transition-colors ${
+              activeSection === "contact"
+                ? "bg-primary text-primary-foreground"
+                : "bg-primary text-primary-foreground hover:bg-primary/90"
+            }`}
           >
             Let's Talk
-          </motion.a>
+          </motion.button>
 
           {/* Mobile Menu Button */}
           <motion.button
@@ -140,28 +177,34 @@ const Header = () => {
           >
             <nav className="flex flex-col gap-2">
               {navLinks.map((link, index) => (
-                <motion.a
+                <motion.button
                   key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => scrollToSection(link.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * index }}
-                  className="px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors text-sm font-medium"
+                  className={`block px-4 py-3 rounded-lg transition-colors text-sm font-medium text-left ${
+                    activeSection === link.href.slice(1)
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  }`}
                 >
                   {link.name}
-                </motion.a>
+                </motion.button>
               ))}
-              <motion.a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <motion.button
+                onClick={() => scrollToSection("#contact")}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="mt-2 px-4 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm text-center hover:bg-primary/90 transition-colors"
+                className={`block mt-2 px-4 py-3 rounded-lg font-medium text-sm text-center transition-colors ${
+                  activeSection === "contact"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
+                }`}
               >
                 Let's Talk
-              </motion.a>
+              </motion.button>
             </nav>
           </motion.div>
         )}

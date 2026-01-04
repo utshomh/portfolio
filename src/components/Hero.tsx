@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -34,7 +34,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[calc(100vh-80px)] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(var(--primary)/0.15),transparent)]" />
@@ -62,10 +62,12 @@ const Hero = () => {
           {/* Profile Image */}
           <motion.div variants={itemVariants} className="mb-8">
             <div className="w-32 h-32 mx-auto rounded-full bg-secondary/50 border-4 border-primary/20 overflow-hidden">
-              {/* TODO: Replace with actual professional photo */}
-              <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/50 flex items-center justify-center">
-                <span className="text-4xl font-bold text-primary">U</span>
-              </div>
+              <img
+                src="/profile.jpg"
+                alt="Utsho MH - Full Stack Developer"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </motion.div>
 
@@ -122,7 +124,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              href=""
+              href="/resume"
               className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25"
             >
               Download Resume
@@ -165,24 +167,6 @@ const Hero = () => {
               </motion.a>
             ))}
           </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="absolute -bottom-20 left-1/2 -translate-x-1/2"
-        >
-          <motion.a
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            href="#projects"
-            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
-          >
-            <span className="text-xs font-medium">Scroll Down</span>
-            <ArrowDown className="w-4 h-4" />
-          </motion.a>
         </motion.div>
       </div>
     </section>

@@ -65,40 +65,112 @@ const About = () => {
               </h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  My programming journey began with curiosity and a passion for creating digital solutions.
-                  What started as tinkering with HTML and CSS evolved into a deep dive into full-stack development,
-                  where I discovered the joy of building applications that solve real-world problems.
+                  My programming journey began with curiosity and a passion for
+                  creating digital solutions. What started as tinkering with
+                  HTML and CSS evolved into a deep dive into full-stack
+                  development, where I discovered the joy of building
+                  applications that solve real-world problems.
                 </p>
                 <p>
-                  I thrive on challenges that push me to learn new technologies and frameworks.
-                  Whether it's crafting intuitive user interfaces with React and Next.js,
-                  or building robust backend systems with Node.js and MongoDB, I enjoy the entire development process.
+                  I thrive on challenges that push me to learn new technologies
+                  and frameworks. Whether it's crafting intuitive user
+                  interfaces with React and Next.js, or building robust backend
+                  systems with Node.js and MongoDB, I enjoy the entire
+                  development process.
                 </p>
                 <p>
-                  Outside of coding, you'll find me exploring new hiking trails, experimenting with photography,
-                  or diving into a good sci-fi novel. I believe in maintaining a healthy work-life balance
-                  and bringing creativity from all aspects of life into my development work.
+                  Outside of coding, you'll find me exploring new hiking trails,
+                  experimenting with photography, or diving into a good sci-fi
+                  novel. I believe in maintaining a healthy work-life balance
+                  and bringing creativity from all aspects of life into my
+                  development work.
                 </p>
                 <p>
-                  I'm always excited to collaborate on innovative projects and contribute to teams
-                  that value clean code, user experience, and continuous learning.
+                  I'm always excited to collaborate on innovative projects and
+                  contribute to teams that value clean code, user experience,
+                  and continuous learning.
                 </p>
               </div>
             </motion.div>
 
             {/* Image/Visual */}
-            <motion.div
-              variants={itemVariants}
-              className="relative"
-            >
+            <motion.div variants={itemVariants} className="relative">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/50 border border-primary/20 overflow-hidden">
-                {/* TODO: Add about section image/illustration */}
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-primary">🚀</span>
+                <div className="w-full h-full flex items-center justify-center relative">
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-8 left-8 w-16 h-16 border-2 border-primary/30 rounded-lg rotate-12"></div>
+                    <div className="absolute top-16 right-12 w-12 h-12 border-2 border-primary/20 rounded-full"></div>
+                    <div className="absolute bottom-16 left-12 w-20 h-20 border-2 border-primary/25 rounded-xl -rotate-6"></div>
+                    <div className="absolute bottom-8 right-8 w-14 h-14 border-2 border-primary/30 rounded-lg rotate-45"></div>
+                  </div>
+
+                  {/* Main Content */}
+                  <div className="text-center space-y-6 relative z-10">
+                    {/* Floating Icons */}
+                    <div className="relative">
+                      <motion.div
+                        animate={{
+                          y: [0, -10, 0],
+                          rotate: [0, 5, 0],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="inline-block"
+                      >
+                        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/30 flex items-center justify-center shadow-lg">
+                          <span className="text-3xl">💻</span>
+                        </div>
+                      </motion.div>
+
+                      {/* Orbiting elements */}
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute inset-0"
+                      >
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 w-3 h-3 bg-primary/40 rounded-full"></div>
+                        <div className="absolute right-0 top-1/2 transform translate-x-2 -translate-y-1/2 w-2 h-2 bg-primary/30 rounded-full"></div>
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2 w-3 h-3 bg-primary/50 rounded-full"></div>
+                        <div className="absolute left-0 top-1/2 transform -translate-x-2 -translate-y-1/2 w-2 h-2 bg-primary/35 rounded-full"></div>
+                      </motion.div>
                     </div>
-                    <p className="text-sm text-muted-foreground">Creative Developer</p>
+
+                    {/* Text */}
+                    <div className="space-y-2">
+                      <motion.p
+                        animate={{ opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="text-lg font-semibold text-primary"
+                      >
+                        Full Stack Developer
+                      </motion.p>
+                      <p className="text-sm text-muted-foreground">
+                        Building the future, one line at a time
+                      </p>
+                    </div>
+
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {["React", "Node.js", "TypeScript"].map((tech, index) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1, duration: 0.5 }}
+                          className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

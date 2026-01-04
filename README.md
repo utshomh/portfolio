@@ -1,75 +1,155 @@
-# React + TypeScript + Vite
+# Utsho MH - Full Stack Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website showcasing my skills, projects, and experience as a Full Stack Developer. Built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design**: Optimized for all devices (desktop, tablet, mobile)
+- **Dark/Light Mode**: Toggle between themes
+- **Smooth Animations**: Powered by Framer Motion
+- **React Router**: Client-side routing for project details
+- **Modern UI**: Clean design with professional color scheme
+- **SEO Friendly**: Proper meta tags and structure
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **Routing**: React Router DOM
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Package Manager**: pnpm
 
-Note: This will impact Vite dev & build performances.
+## 📁 Project Structure
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── Header.tsx          # Navigation header with theme toggle
+│   ├── Hero.tsx            # Hero section with introduction
+│   ├── About.tsx           # About me section
+│   ├── Skills.tsx          # Skills showcase with progress bars
+│   ├── Projects.tsx        # Projects grid with routing
+│   ├── ProjectDetail.tsx   # Individual project detail pages
+│   ├── Contact.tsx         # Contact form and information
+│   ├── Footer.tsx          # Site footer
+│   ├── NotFound.tsx        # 404 page
+│   └── ErrorPage.tsx       # Error boundary page
+├── App.tsx                 # Main app component
+├── main.tsx               # App entry point with routing
+└── index.css              # Global styles and Tailwind imports
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏃‍♂️ Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (v18 or higher)
+- pnpm
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/utshomh/portfolio.git
+cd portfolio
 ```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start the development server:
+```bash
+pnpm run dev
+```
+
+4. Open [http://localhost:5174](http://localhost:5174) in your browser.
+
+### Build for Production
+
+```bash
+pnpm run build
+```
+
+### Preview Production Build
+
+```bash
+pnpm run preview
+```
+
+### Lint Code
+
+```bash
+pnpm run lint
+```
+
+## 📱 Sections
+
+### 🏠 Home
+- Professional introduction
+- Tech stack showcase
+- Call-to-action buttons
+- Social media links
+
+### 👨‍💻 About
+- Personal journey in programming
+- Work preferences and interests
+- Hobbies and personality insights
+
+### 🛠️ Skills
+- Frontend: React, Next.js, TypeScript, Tailwind CSS
+- Backend: Node.js, Express, MongoDB, PostgreSQL
+- Tools: Git, Docker, AWS, Firebase
+
+### 💼 Projects
+- 4 featured projects with detailed pages
+- Each project includes:
+  - Technology stack
+  - Full description
+  - Live demo links
+  - GitHub repository
+  - Challenges faced
+  - Future plans
+
+### 📞 Contact
+- Contact form
+- Direct contact information
+- Social media links
+
+## 🎨 Design Philosophy
+
+- **Minimalist**: Clean, uncluttered design
+- **Professional**: Corporate color scheme with cyan accents
+- **Accessible**: Proper contrast ratios and keyboard navigation
+- **Performance**: Optimized animations and lazy loading
+
+## 📝 TODO
+
+- [ ] Add actual project screenshots
+- [ ] Add professional headshot
+- [ ] Add resume PDF download
+- [ ] Update social media links
+- [ ] Add more projects
+- [ ] Implement contact form backend
+
+## 🤝 Contributing
+
+This is a personal portfolio project. Feel free to fork and use as inspiration for your own portfolio!
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📧 Contact
+
+**Utsho MH**
+- Email: utshomh.dev@gmail.com
+- WhatsApp: +8801301109766
+- LinkedIn: [Your LinkedIn]
+- GitHub: [utshomh](https://github.com/utshomh)
+
+---
+
+Built with ❤️ using React & TypeScript
