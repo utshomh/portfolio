@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 
 interface ProjectDetails {
   techStack: string[];
@@ -116,6 +117,12 @@ const projects: Project[] = [
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const project = projects.find(
     (p) => p.title.toLowerCase().replace(/\s+/g, "-") === projectId
   );

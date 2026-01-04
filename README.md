@@ -134,6 +134,23 @@ pnpm run lint
 - [ ] Add more projects
 - [ ] Implement contact form backend
 
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. **Connect your repository** to Vercel
+2. **Build Settings**:
+   - Build Command: `pnpm run build`
+   - Output Directory: `dist`
+3. **Deploy**: Vercel will automatically detect the `vercel.json` configuration
+
+The `vercel.json` file handles client-side routing for React Router, so refreshing project detail pages will work correctly.
+
+### Other Platforms
+
+- **Netlify**: Create a `_redirects` file with `/* /index.html 200`
+- **GitHub Pages**: Use a custom domain or GitHub Actions for deployment
+
 ## 🤝 Contributing
 
 This is a personal portfolio project. Feel free to fork and use as inspiration for your own portfolio!

@@ -159,7 +159,7 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 auto-rows-fr"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 auto-rows-fr place-items-center max-w-5xl mx-auto"
         >
           {projects.map((project) => (
             <motion.article
