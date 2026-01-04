@@ -59,15 +59,14 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Status Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm text-muted-foreground">
-              Available for work
-            </span>
+          {/* Profile Image */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="w-32 h-32 mx-auto rounded-full bg-secondary/50 border-4 border-primary/20 overflow-hidden">
+              {/* TODO: Replace with actual professional photo */}
+              <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/50 flex items-center justify-center">
+                <span className="text-4xl font-bold text-primary">U</span>
+              </div>
+            </div>
           </motion.div>
 
           {/* Main Heading */}
@@ -123,10 +122,10 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              href="#projects"
+              href=""
               className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25"
             >
-              View My Work
+              Download Resume
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.05 }}
