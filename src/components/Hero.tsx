@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Facebook } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
@@ -174,13 +174,21 @@ const Hero = () => {
             className="flex items-center justify-center gap-4"
           >
             {[
-              { icon: Github, href: "https://github.com", label: "GitHub" },
+              {
+                icon: Github,
+                href: "https://github.com/utshomh",
+                label: "GitHub",
+              },
               {
                 icon: Linkedin,
-                href: "https://linkedin.com",
+                href: "https://www.linkedin.com/in/utshomh/",
                 label: "LinkedIn",
               },
-              { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+              {
+                icon: Facebook,
+                href: "https://facebook.com/utsho.de.bravestone",
+                label: "Facebook",
+              },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}

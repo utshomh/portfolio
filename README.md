@@ -50,22 +50,25 @@ src/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/utshomh/portfolio.git
 cd portfolio
 ```
 
-2. Install dependencies:
+1. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
-3. Start the development server:
+1. Start the development server:
+
 ```bash
 pnpm run dev
 ```
 
-4. Open [http://localhost:5174](http://localhost:5174) in your browser.
+1. Open [http://localhost:5174](http://localhost:5174) in your browser.
 
 ### Build for Production
 
@@ -88,22 +91,26 @@ pnpm run lint
 ## 📱 Sections
 
 ### 🏠 Home
+
 - Professional introduction
 - Tech stack showcase
 - Call-to-action buttons
 - Social media links
 
 ### 👨‍💻 About
+
 - Personal journey in programming
 - Work preferences and interests
 - Hobbies and personality insights
 
 ### 🛠️ Skills
+
 - Frontend: React, Next.js, TypeScript, Tailwind CSS
 - Backend: Node.js, Express, MongoDB, PostgreSQL
 - Tools: Git, Docker, AWS, Firebase
 
 ### 💼 Projects
+
 - 4 featured projects with detailed pages
 - Each project includes:
   - Technology stack
@@ -114,6 +121,7 @@ pnpm run lint
   - Future plans
 
 ### 📞 Contact
+
 - Contact form
 - Direct contact information
 - Social media links
@@ -162,9 +170,10 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📧 Contact
 
 **Utsho MH**
-- Email: utshomh.dev@gmail.com
+
+- Email: <utshomh.dev@gmail.com>
 - WhatsApp: +8801301109766
-- LinkedIn: [Your LinkedIn]
+- LinkedIn: [utshomh](https://www.linkedin.com/in/utshomh/)
 - GitHub: [utshomh](https://github.com/utshomh)
 
 ---
