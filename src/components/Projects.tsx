@@ -56,6 +56,7 @@ const projects: Array<Project> = [
     details: {
       techStack: [
         "React",
+        "Framer Motion",
         "Firebase",
         "Express.js",
         "MongoDB",
