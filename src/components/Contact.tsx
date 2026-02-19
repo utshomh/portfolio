@@ -12,7 +12,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
-    null
+    null,
   );
 
   const contactInfo = [
@@ -60,7 +60,7 @@ const Contact = () => {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -86,7 +86,7 @@ const Contact = () => {
           message: formData.message,
           to_email: "utshomh.dev@gmail.com",
         },
-        publicKey
+        publicKey,
       );
 
       setSubmitStatus("success");
@@ -205,7 +205,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-colors"
-                    placeholder="your.email@example.com"
+                    placeholder="exammple@email.com"
                   />
                 </div>
               </div>
